@@ -1,0 +1,6 @@
+,Weapon_Name,Weapon_Description,Image,myMesh,Damage,Crit_Chance
+Prototype_Laser_Rifle,Prototype Laser Rifle,Test,/Game/Static/Weapons/InvImages/Placeholder_Laser_Rifle,/Game/Static/Weapons/FPWeapon/Mesh/SM_FPGun,15,0.15
+Hammer_Pistol,Hammer Pistol,Test,/Game/Static/Weapons/InvImages/PlaceHolder_Inv_Image_Pistol,/Game/Static/Weapons/Weapon_Pack/Meshes/SM_Hammer,5,0.2
+Hornet_SMG,Hornet SMG,Test,/Game/Static/Weapons/Weapon_Pack/Textures/T_SMG_D,/Game/Static/Weapons/Weapon_Pack/Meshes/SM_SMG,6,0.5
+Frag_Grenade,Frag Grenade,Test,/Game/Static/Weapons/Weapon_Pack/Textures/T_Grenade_D,/Game/Static/Weapons/Weapon_Pack/Meshes/grenade_static,10,0.3
+Incindiary_Grenade,Incindiary Grenade,Test,/Game/Static/Weapons/Weapon_Pack/Textures/T_Grenade_D,/Game/Static/Weapons/Weapon_Pack/Meshes/grenade_static,15,0.3
