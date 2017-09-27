@@ -18,6 +18,22 @@ public:
 	// Sets default values for this character's properties
 	AMannequin();
 
+	//Actor to be selected
+	UPROPERTY(EditAnywhere, Category = "Physics")
+		AActor* ActorToMove;
+
+	//Force that will be applied to chosen Actor
+	UPROPERTY(EditAnywhere, Category = "Physics")
+		FVector ForceToAdd = FVector(0, 0, 5000);
+
+	//Function that applies force to actor
+	UFUNCTION(BlueprintCallable, Category = "Physics")
+		void MoveChosenActor();
+
+	/** Location on Character mesh where Grenade should spawn. */
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+		class USceneComponent* FP_grenadeLocation;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -40,6 +56,9 @@ public:
 	TSubclassOf<class AGun> GunBlueprint;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+		TSubclassOf<class AGrenade> GrenadeBlueprint;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Setup")
 		TSubclassOf<class AGun> Pistol;
 
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
@@ -48,9 +67,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
 		void ReloadWeapon();
 
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+		void OnThrow();
+
 	//Handles the Pickup Input
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 		void PickupItem();
+
+	/*UFUNCTION(BlueprintCallable, Category = "Weapon")
+		void ChangeWeapon();*/
 
 	TArray<APickup*> GetInventory() { return Inventory; }
 
@@ -67,6 +92,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	AGun* Gun;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+		AGrenade* Grenade;
 
 	/*Raycasts in front of the character to find usable items*/
 	void Raycast();

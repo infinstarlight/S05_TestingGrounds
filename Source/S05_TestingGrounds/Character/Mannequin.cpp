@@ -4,6 +4,7 @@
 #include "Mannequin.h"
 #include "MyPlayerController.h"
 #include "../Weapons/Gun.h"
+#include "Grenade.h"
 
 
 // Sets default values
@@ -37,7 +38,10 @@ void AMannequin::BeginPlay()
 		return;
 	}
 
+	//Pistol = GetWorld()->SpawnActor<AGun>(Pistol);
+
 	Gun = GetWorld()->SpawnActor<AGun>(GunBlueprint);
+	Grenade = GetWorld()->SpawnActor<AGrenade>(GrenadeBlueprint);
 	
 
 	//Attach gun mesh component to Skeleton, doing it here because the skelton is not yet created in the constructor
@@ -48,6 +52,8 @@ void AMannequin::BeginPlay()
 		Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint_0"));
 	}
 
+//	Pistol->AnimInstance1P = Mesh1P->GetAnimInstance();
+
 	Gun->AnimInstance1P = Mesh1P->GetAnimInstance();
 	Gun->AnimInstance3P = GetMesh()->GetAnimInstance();
 	
@@ -57,6 +63,7 @@ void AMannequin::BeginPlay()
 		InputComponent->BindAction("Reload", IE_Pressed, this, &AMannequin::ReloadWeapon);
 		InputComponent->BindAction("Activate", IE_Pressed, this, &AMannequin::PickupItem);
 		InputComponent->BindAction("Drop Item", IE_Pressed, this, &AMannequin::DropEquippedItem);
+		InputComponent->BindAction("Grenade", IE_Pressed, this, &AMannequin::OnThrow);
 		
 		FInputActionBinding InventoryBinding;
 		//We need this bind to execute on pause state
@@ -104,6 +111,26 @@ void AMannequin::PullTrigger()
 void AMannequin::ReloadWeapon()
 {
 	Gun->OnReload();
+}
+
+void AMannequin::OnThrow()
+{
+	Grenade->Throw();
+}
+
+void AMannequin::MoveChosenActor()
+{
+	//Get static mesh of chosen Actor
+	UStaticMeshComponent* SM = Cast<UStaticMeshComponent>(ActorToMove->GetRootComponent());
+
+//if static mesh is valid apply force
+if (SM)
+{
+	//When you want to apply force, need to multiply it's value by mass of object
+	SM->AddForce(ForceToAdd*SM->GetMass());
+}
+else
+GLog->Log("Root component is not a static mesh");
 }
 
 void AMannequin::Raycast()
@@ -213,3 +240,4 @@ void AMannequin::DropEquippedItem()
 		}
 	}
 }
+
