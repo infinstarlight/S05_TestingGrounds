@@ -38,8 +38,6 @@ void AMannequin::BeginPlay()
 		return;
 	}
 
-	//Pistol = GetWorld()->SpawnActor<AGun>(Pistol);
-
 	Gun = GetWorld()->SpawnActor<AGun>(GunBlueprint);
 	Grenade = GetWorld()->SpawnActor<AGrenade>(GrenadeBlueprint);
 	
@@ -52,7 +50,6 @@ void AMannequin::BeginPlay()
 		Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint_0"));
 	}
 
-//	Pistol->AnimInstance1P = Mesh1P->GetAnimInstance();
 
 	Gun->AnimInstance1P = Mesh1P->GetAnimInstance();
 	Gun->AnimInstance3P = GetMesh()->GetAnimInstance();

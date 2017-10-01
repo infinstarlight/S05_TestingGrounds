@@ -58,8 +58,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 		TSubclassOf<class AGrenade> GrenadeBlueprint;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Setup")
-		TSubclassOf<class AGun> Pistol;
 
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
 	void PullTrigger();
@@ -76,6 +74,9 @@ public:
 
 	/*UFUNCTION(BlueprintCallable, Category = "Weapon")
 		void ChangeWeapon();*/
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapons")
+		TArray<AActor*> Weapons;
 
 	TArray<APickup*> GetInventory() { return Inventory; }
 
