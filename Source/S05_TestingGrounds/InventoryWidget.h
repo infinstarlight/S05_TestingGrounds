@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Pickup.h"
-#include "Gun.h"
+#include "Weapons/Gun.h"
 #include "Blueprint/UserWidget.h"
 #include "InventoryWidget.generated.h"
 

@@ -59,6 +59,7 @@ void AMannequin::BeginPlay()
 		InputComponent->BindAction("Fire", IE_Pressed, this, &AMannequin::PullTrigger);
 		InputComponent->BindAction("Reload", IE_Pressed, this, &AMannequin::ReloadWeapon);
 		InputComponent->BindAction("Activate", IE_Pressed, this, &AMannequin::PickupItem);
+		InputComponent->BindAction("Activate", IE_Pressed, this, &AMannequin::PickupWeapon);
 		InputComponent->BindAction("Drop Item", IE_Pressed, this, &AMannequin::DropEquippedItem);
 		InputComponent->BindAction("Grenade", IE_Pressed, this, &AMannequin::OnThrow);
 		
