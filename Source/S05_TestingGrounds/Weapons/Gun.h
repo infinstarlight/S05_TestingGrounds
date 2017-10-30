@@ -49,20 +49,42 @@ public:
 	UPROPERTY(EditAnywhere)
 		int MaxAmmoInMag;
 
-	UPROPERTY(EditAnywhere)
+	//Unsure what to do with this
+	/*UPROPERTY(EditAnywhere)
 		int CurrentAmmoinInventory;
 
 	UPROPERTY(EditAnywhere)
-		int MaxAmmoInInventory;
+		int MaxAmmoInInventory;*/
 
+	//TODO: Link to Anim System, possibly AnimNotify?
 	UPROPERTY(EditAnywhere)
 		float ReloadTime;
 
+	//Enable or Disable glow effect
+	void SetGlowEffect(bool Status);
+
+	FORCEINLINE UTexture2D* GetPickupTexture() { return PickupTexture; }
+
+	//Static Mesh of Pickup
+	UPROPERTY(VisibleAnywhere)
+		UStaticMeshComponent* PickupSM;
+
+	//Texture of item we want to add to secrets or Inventory
+	UPROPERTY(EditAnywhere, Category = "PickupProperties")
+		UTexture2D* PickupTexture;
+
+	//Name of Item
+	UPROPERTY(EditAnywhere, Category = "PickupProperties")
+		FString ItemName;
 	
 
 	/** Sound to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	class USoundBase* FireSound;
+
+	/** Sound to play each time we reload */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+		class USoundBase* ReloadSound;
 
 	/** AnimMontages to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)

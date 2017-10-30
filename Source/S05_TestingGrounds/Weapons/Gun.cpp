@@ -74,13 +74,18 @@ void AGun::OnFire()
 
 void AGun::OnReload()
 {
-
+	if (CurrentAmmoInMag == 0)
+	{
+		//Get MaxAmmo int
+		//Subtract Current by Max
+		//If Max = 0 then prevent reload from playing
+	}
 
 
 	// try and play the sound if specified
 	if (FireSound != NULL)
 	{
-		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, ReloadSound, GetActorLocation());
 	}
 
 	// try and play a firing animation if specified
@@ -92,4 +97,9 @@ void AGun::OnReload()
 	{
 		ReloadAnimInstance3P->Montage_Play(FireAnimation3P, 1.f);
 	}
+}
+
+void AGun::SetGlowEffect(bool Status)
+{
+	PickupSM->SetRenderCustomDepth(Status);
 }

@@ -182,6 +182,24 @@ void AMannequin::PickupItem()
 	}
 }
 
+void AMannequin::PickupWeapon()
+{
+	if (LastWeaponSeen)
+	{
+		//Find the first available slot
+		int32 AvailableSlot = Inventory.Find(nullptr);
+
+		if (AvailableSlot != INDEX_NONE)
+		{
+			//Add the item to the first valid slot we found
+			WeaponInventory[AvailableSlot] = LastWeaponSeen;
+			//Destroy the item from the game
+			LastWeaponSeen->Destroy();
+		}
+		else GLog->Log("You can't carry any more Weapons!");
+	}
+}
+
 void AMannequin::HandleInventoryInput()
 {
 	AMyPlayerController* Con = Cast<AMyPlayerController>(GetController());

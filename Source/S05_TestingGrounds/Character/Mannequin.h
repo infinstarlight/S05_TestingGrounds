@@ -34,6 +34,8 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 		class USceneComponent* FP_grenadeLocation;
 
+	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -72,11 +74,16 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 		void PickupItem();
 
-	/*UFUNCTION(BlueprintCallable, Category = "Weapon")
-		void ChangeWeapon();*/
+	//Handles the Pickup Input for Weapon
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+		void PickupWeapon();
 
+	
+	//TODO: Create Weapon Inventory
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapons")
-		TArray<AActor*> Weapons;
+		TArray<AGun*> WeaponInventory;
+
+	TArray<AGun*> GetWeaponInventory() { return WeaponInventory; }
 
 	TArray<APickup*> GetInventory() { return Inventory; }
 
@@ -102,6 +109,8 @@ private:
 
 	/*Reference to the last seen pickup item. Nullptr if none*/
 	APickup* LastItemSeen;
+
+	AGun* LastWeaponSeen;
 
 	UFUNCTION()
 		void HandleInventoryInput();

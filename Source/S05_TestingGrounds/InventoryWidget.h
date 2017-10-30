@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Pickup.h"
+#include "Gun.h"
 #include "Blueprint/UserWidget.h"
 #include "InventoryWidget.generated.h"
 
@@ -27,6 +28,10 @@ public:
 	//Stores a reference in order to bind information on inventory slots
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		TArray<APickup*> ItemsArray;
+
+	//Stores a reference in order to bind info on inventory slots
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		TArray<AGun*> WeaponsArray;
 	
 	
 };
