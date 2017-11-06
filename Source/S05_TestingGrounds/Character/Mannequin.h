@@ -34,7 +34,7 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 		class USceneComponent* FP_grenadeLocation;
 
-	
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -43,7 +43,7 @@ protected:
 	UPROPERTY(EditAnywhere)
 		float RaycastRange = 250.0f;
 
-	
+
 
 public:
 	// Called every frame
@@ -54,7 +54,7 @@ public:
 
 	virtual void UnPossessed() override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
 	TSubclassOf<class AGun> GunBlueprint;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
@@ -78,7 +78,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 		void PickupWeapon();
 
-	
+
 	//TODO: Create Weapon Inventory
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapons")
 		TArray<AGun*> WeaponInventory;
